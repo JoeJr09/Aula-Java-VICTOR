@@ -1,4 +1,4 @@
-package Aula;
+package Aula2;
 public class Autor {
     String nomeAutor;
     String emailAutor;
