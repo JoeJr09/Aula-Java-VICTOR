@@ -27,6 +27,21 @@ public class Main {
 
         System.out.println("Valor do Ebook: " + ebook1.getValor());
 
+        //Livro físico
+        Livro_Fisico livroFisico1 = new Livro_Fisico(autor1);
+        livroFisico1.setNome("O Hobbit");
+        livroFisico1.setDescricao("Uma aventura inesperada");
+        livroFisico1.setValor(150);
+        livroFisico1.setIsbn("978-85-359-0048-7");
+
+        CarrinhoDeCompra carrinhoDeCompra = new CarrinhoDeCompra();
+        carrinhoDeCompra.adicionarLivro(livroFisico1);
+        carrinhoDeCompra.adicionarLivro(ebook1);
+        System.out.println("Valor total do carrinho: " + carrinhoDeCompra.getValorTotal());
+
+        System.out.println("Valor do Livro Físico após desconto: " + livroFisico1.getValor());
+        System.out.println("Taxa de Impressão: " + livroFisico1.getTaxadeImpressao());
+
         //aula2 de novo
         Livro livro1 = new Livro(autor1);
         livro1.setNome("O Senhor dos Anéis.");
