@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Tempo máximo de recarga: " + Recarregavel.TEMPO_MAXIMO + " minutos");
 
         Autonomo veiculoAutonomo = carro;
-        veiculoAutonomo.dirigirAutonomo("Shopping Center");
+        veiculoAutonomo.dirigirAutonomo("Taguatinga Shopping");
         System.out.println("Suporte GPS: " + Autonomo.SUPORTE_GPS);
     }
 }
