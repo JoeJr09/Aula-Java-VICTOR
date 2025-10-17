@@ -3,9 +3,12 @@ public class Main {
 
         Passaro passaro = new Passaro("Papagaio");
         passaro.voar();
+
         System.out.println("==============================");
-        Voavel voador = passaro;
-        voador.voar();
+
+        Pato pato = new Pato("Donaldo");
+        pato.nadar();
+        pato.voar();
 
     }
 }
