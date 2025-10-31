@@ -1,15 +1,33 @@
+class DivisaoPorZeroException extends Exception {
+    public DivisaoPorZeroException(String msg) {
+        super(msg);
+    }
+}
+
+class Calculadora extends DivisaoPorZeroException {
+    public Calculadora(String msg) {
+        super(msg);
+    }
+
+    public void  dividir(int a, int b) throws DivisaoPorZeroException {
+        if (b == 0) {
+            throw new DivisaoPorZeroException("Divisao por zero nao e permitida.");
+        }
+        int c = a / b;
+    }
+        }
+
 public class Main {
     public static void main(String[] args) {
 
-        try {
-            int a= 10;
-            int b= 0;
-            int c= a/b;
-        }catch (ArithmeticException e) {
-            System.out.println("Erro: Divisao por zero nao e permitida." + e.getMessage());
 
-        }finally { //Nao e obrigatorio, mas e uma boa pratica
-            System.out.println("Operacao finalizada.");
+        Calculadora calculadora = new Calculadora("Calculadora Iniciada");
+
+        try {
+            calculadora.dividir(10, 0);
+        } catch (DivisaoPorZeroException e) {
+            System.out.println("Error: " + e.getMessage());
+
         }
     }
 }
