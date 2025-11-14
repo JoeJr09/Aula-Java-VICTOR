@@ -1,6 +1,6 @@
 package Trabalho2;
 
-// Classe principal - executa o programa
+
 public class BancoApp {
     public static void main(String[] args) {
         
@@ -12,17 +12,17 @@ public class BancoApp {
         // Tenta executar operações que podem gerar erros
         try {
             // Depósitos iniciais nas contas
-            cc.depositar(1000); // Adiciona R$ 1000 na conta corrente
-            cp.depositar(500);  // Adiciona R$ 500 na poupança
+            cc.depositar(1000); 
+            cp.depositar(500);  
             
             // Saque da conta corrente (cobra taxa de 0,5%)
-            cc.sacar(200); // Saca R$ 200 + taxa = R$ 201
+            cc.sacar(200); 
             
             // Transferência entre contas (de corrente para poupança)
-            cc.transferir(cp, 100); // Transfere R$ 100 + taxa
+            cc.transferir(cp, 100); 
             
             // Atualiza saldo da poupança aplicando rendimento mensal
-            cp.atualizarSaldo(); // Aplica 0,3% de rendimento
+            cp.atualizarSaldo(); 
             
         } catch (SaldoInsuficienteException e) {
             // Captura exceção customizada de saldo insuficiente
@@ -33,7 +33,7 @@ public class BancoApp {
         }
         
         // Exibe extratos finais de ambas as contas
-        cc.imprimirExtrato(); // Mostra saldo final da conta corrente
-        cp.imprimirExtrato(); // Mostra saldo final da poupança
+        cc.imprimirExtrato(); 
+        cp.imprimirExtrato(); 
     }
 }

@@ -1,9 +1,8 @@
 package Trabalho2;
 
-// Classe abstrata base para diferentes tipos de conta bancária
-// Não pode ser instanciada diretamente, serve como modelo para subclasses
+// Classe abstrata para diferentes tipos de conta bancária
 public abstract class Conta {
-    // Atributos privados - encapsulamento protege os dados
+    // Atributos privados 
     private String numero;
     private String titular;
     protected double saldo; // Protected permite acesso nas subclasses
@@ -17,7 +16,6 @@ public abstract class Conta {
     
     // Método para adicionar dinheiro na conta
     public void depositar(double valor) {
-        // Validação: não permite depósito de valor negativo ou zero
         if (valor <= 0) {
             throw new IllegalArgumentException("O valor do depósito deve ser positivo.");
         }
@@ -27,7 +25,6 @@ public abstract class Conta {
     // Método para retirar dinheiro da conta
     // throws indica que pode lançar uma exceção customizada
     public void sacar(double valor) throws SaldoInsuficienteException {
-        // Validação: não permite saque de valor negativo ou zero
         if (valor <= 0) {
             throw new IllegalArgumentException("O valor do saque deve ser positivo.");
         }
@@ -38,7 +35,7 @@ public abstract class Conta {
         this.saldo -= valor;
     }
     
-    // Métodos getters - permitem acesso controlado aos atributos privados
+    // Métodos getters 
     public double getSaldo() {
         return saldo;
     }
