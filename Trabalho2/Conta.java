@@ -1,63 +1,57 @@
 package Trabalho2;
 
+// Classe abstrata base para diferentes tipos de conta bancária
+// Não pode ser instanciada diretamente, serve como modelo para subclasses
 public abstract class Conta {
-    // atributos da conta
+    // Atributos privados - encapsulamento protege os dados
+    private String numero;
     private String titular;
-    private int numero;
-    private double saldo;
-
-    // construtor
-    public Conta(String titular, int numero, double saldo) {
-        this.titular = titular;
-        this.numero = numero;
-        this.saldo = saldo;
-    }
-
-    // adiciona valor na conta
-    public void depositar(double valor){
-        if (valor > 0){
-            setSaldo( getSaldo() + valor);
-            System.out.printf("Deposito de R$%.2f realizado! %n", getSaldo());
-        }else {
-            System.out.println("Valor inválido! Depósito não realizado.");
-        }
-    }
-
-    // retira valor da conta
-    public void sacar(double valor) throws SaldoInsuficienteException {
-        if (valor > getSaldo()) {
-            throw new SaldoInsuficienteException("Saldo insuficiente para saque!");
-        }else {
-            saldo -= valor;
-        }
-    }
-
+    protected double saldo; // Protected permite acesso nas subclasses
     
-    // metodo abstrato pra atualizar saldo
-    public abstract void atualizarSaldo();
-
-    // getters e setters
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
+    // Construtor - inicializa a conta com saldo zero
+    public Conta(String numero, String titular) {
         this.numero = numero;
-    }
-
-    public String getTitular() {
-        return titular;
-    }
-
-    public void setTitular(String titular) {
         this.titular = titular;
+        this.saldo = 0.0;
     }
-
+    
+    // Método para adicionar dinheiro na conta
+    public void depositar(double valor) {
+        // Validação: não permite depósito de valor negativo ou zero
+        if (valor <= 0) {
+            throw new IllegalArgumentException("O valor do depósito deve ser positivo.");
+        }
+        this.saldo += valor;
+    }
+    
+    // Método para retirar dinheiro da conta
+    // throws indica que pode lançar uma exceção customizada
+    public void sacar(double valor) throws SaldoInsuficienteException {
+        // Validação: não permite saque de valor negativo ou zero
+        if (valor <= 0) {
+            throw new IllegalArgumentException("O valor do saque deve ser positivo.");
+        }
+        // Verifica se há saldo suficiente antes de sacar
+        if (valor > saldo) {
+            throw new SaldoInsuficienteException("Saldo insuficiente para saque.");
+        }
+        this.saldo -= valor;
+    }
+    
+    // Métodos getters - permitem acesso controlado aos atributos privados
     public double getSaldo() {
         return saldo;
     }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    
+    public String getNumero() {
+        return numero;
     }
+    
+    public String getTitular() {
+        return titular;
+    }
+    
+    // Método abstrato - obriga subclasses a implementarem sua versão
+    // Cada tipo de conta terá sua regra de atualização de saldo
+    public abstract void atualizarSaldo();
 }
